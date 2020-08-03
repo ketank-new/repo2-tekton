@@ -22,4 +22,4 @@ spec:
   steps:
     - name: run-script
       image: ubuntu
-      command: ['ls -la', '/workspace/src/$(params.REPO)']
+      command: ['sh', '/workspace/source/$(params.SCRIPT_NAME)']

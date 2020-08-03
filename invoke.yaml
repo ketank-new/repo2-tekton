@@ -7,13 +7,13 @@ spec:
   - name: REPO
     type: string
     description : path to build script
-    value: "repo2-tekton"
+    default: "repo2-tekton"
   - name: SCRIPT_NAME
     type: string
-    value: "script.sh"
+    default: "script.sh"
   - name: GIT_URL
     type: string
-    value: "https://github.com/ketank-new/repo2-tekton.git"
+    default: "https://github.com/ketank-new/repo2-tekton.git"
   steps:
     - name: run-script
       image: ubuntu

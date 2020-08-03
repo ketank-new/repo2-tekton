@@ -14,10 +14,12 @@ spec:
   - name: GIT_URL
     type: string
     default: "https://github.com/ketank-new/repo2-tekton.git"
+  resources:
+    inputs:
+    - name: source
+      type: git
+
   steps:
     - name: run-script
       image: ubuntu
-      command:
-        - git clone $(params.GIT_URL)
-        - cd $(params.REPO)
-        - sh $(params.SCRIPT_NAME)
+      command: ['sh', '/workspace/src/$(params.REPO/$(params.SCRIPT_NAME))']

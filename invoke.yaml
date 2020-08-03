@@ -4,10 +4,10 @@ metadata:
   name: invoke
 spec:
   params:
-  - name: SCRIPT_LOCATION
+  - name: REPO
     type: string
     description : path to build script
-    value: .
+    value: "repo2-tekton"
   - name: SCRIPT_NAME
     type: string
     value: "script.sh"
@@ -18,4 +18,6 @@ spec:
     - name: run-script
       image: ubuntu
       command:
-        - sh $(params.SCRIPT_LOCATION.SCRIPT_NAME)
+        - git clone $(params.GIT_URL)
+        - cd $(params.REPO)
+        - sh $(params.SCRIPT_NAME)

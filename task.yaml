@@ -1,22 +1,12 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: build-repo2
+  name: byebye
 spec:
-  params:
-    - name: BASE_IMAGE
-      default: ubuntu
-	- name: BUILD_SCRIPT_LOCATION
-	  default: /script.sh
-  resource:
-	inputs:
-    - name: source
-	  type: git
   steps:
-  - name:build
-	image: $(inputs.params.BUILDER_IMAGE)
-	workingDir: /workspace/source
-	command:
-        - sh
+    - name: byebye
+      image: ubuntu
+      command:
+        - echo
       args:
-        - $(inputs.params.BUILD_SCRIPT_LOCATION)
+        - "Bye World!"

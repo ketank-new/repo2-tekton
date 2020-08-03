@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: invoke
+spec:
+  params:
+  - name: SCRIPT_LOCATION
+    type: string
+    description : path to build script
+    value: .
+  - name: SCRIPT_NAME
+    type: string
+    value: "script.sh"
+  - name: GIT_URL
+    type: string
+    value: "https://github.com/ketank-new/repo2-tekton.git"
+  steps:
+    - name: run-script
+      image: ubuntu
+      command:
+        - sh $(params.SCRIPT_LOCATION.SCRIPT_NAME)

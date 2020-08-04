@@ -2,15 +2,18 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata: 
   name: repo2
-spec:
+spec: 
   resources: 
-    - name: source
+    - 
+      name: source
       type: git
-  tasks: 
-    - name: invoke
-      resources: 
-        inputs: 
-          - name: source
-            resource: source
   taskRef: 
     name: invoke
+  tasks: 
+    - 
+      name: invoke
+      resources: 
+        inputs: 
+          - 
+            name: source
+            resource: source

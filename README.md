@@ -3,11 +3,14 @@ sample repo to try and test execution of Task and adding the Task to a Pipeline 
 
 The branch consist of file below is teh description of usage of each file in sequential order
 
-Kubernetes playground
+# Kubernetes playground
 1) https://www.katacoda.com/courses/kubernetes/launch-single-node-cluster
 
-2) Install the kubernetes cluster using the following command 
+2) Install the kubernetes cluster using the following command
+   ```
    minikube start --wait=false
+   ```
+   
    
 3) clone this repo and activate branch 'experiments'
 

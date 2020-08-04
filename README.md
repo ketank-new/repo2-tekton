@@ -6,7 +6,7 @@ The branch consist of file below is teh description of usage of each file in seq
 Kubernetes playground
 1) https://www.katacoda.com/courses/kubernetes/launch-single-node-cluster
 
-2) Install the kubernetes cluster using the following 2 commands
+2) Install the kubernetes cluster using the following command 
    minikube start --wait=false
    
 3) clone this repo and activate branch 'experiments'

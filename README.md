@@ -11,16 +11,19 @@ The branch consist of file below is teh description of usage of each file in seq
    minikube start --wait=false
    ```
    
-   
 3) clone this repo and activate branch 'experiments'
 
-4) run script to install tekton-pipeline and tkn cli tool  
+4) run script to install tekton-pipeline and tkn cli tool 
+   ```
    cd repo2-tekton
    sh envsetup.sh
+   ```
    
 5) test tekton pipeline installation and tkn cli tool with the following commands
+    ```
     kunectl get namespaces
     tkn --help
+    ```
     
 6) To apply the configs and rn pipeline and view results
 

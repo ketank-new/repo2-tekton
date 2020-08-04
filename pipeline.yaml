@@ -9,7 +9,7 @@ spec:
   tasks: 
     - name: cloneandrun-a
       taskRef: 
-        - name: cloneandrun-a
+        name: cloneandrun-a
       resources: 
         inputs: 
           - name: source
@@ -17,7 +17,7 @@ spec:
     - name: cloneandrun-b
       runAfter: [cloneandrun-a]
       taskRef: 
-        - name: cloneandrun-b
+        name: cloneandrun-b
       resources: 
         inputs: 
           - name: source

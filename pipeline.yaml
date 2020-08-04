@@ -7,7 +7,7 @@ spec:
     - name: source
       type: git
   tasks: 
-    - name: invoke1
+    - name: cloneandrun-a
       taskRef: 
         - name: cloneandrun-a
       resources: 

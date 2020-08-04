@@ -9,15 +9,15 @@ spec:
   tasks: 
     - name: invoke1
       taskRef: 
-        - name: TaskA
+        - name: cloneandrun-a
       resources: 
         inputs: 
           - name: source
             resource: source
-    - name: TaskB
-      runAfter: [TaskA]
+    - name: cloneandrun-b
+      runAfter: [cloneandrun-a]
       taskRef: 
-        - name: TaskB
+        - name: cloneandrun-b
       resources: 
         inputs: 
           - name: source

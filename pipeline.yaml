@@ -3,7 +3,14 @@ kind: Pipeline
 metadata:
   name: repo2
 spec:
-  tasks:
+resources:
+  - name: source
+    type: git
+tasks:
   - name: invoke
     taskRef:
       name: invoke
+    resources:
+      inputs:
+      - name: source
+        resource: source

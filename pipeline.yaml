@@ -9,15 +9,15 @@ spec:
   tasks: 
     - name: invoke1
       taskRef: 
-        - name: invoke1
+        - name: TaskA
       resources: 
         inputs: 
           - name: source
             resource: source
-    - name: invoke2
-      runAfter: [invoke1]
+    - name: TaskB
+      runAfter: [TaskA]
       taskRef: 
-        - name: invoke2
+        - name: TaskB
       resources: 
         inputs: 
           - name: source

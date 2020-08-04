@@ -1,23 +1,24 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: invoke2
+  name: TaskA
 spec:
   params:
   - name: REPO
     type: string
     description : path to build script
-    default: "repo1-tekton"
+    default: "repo2-tekton"
   - name: SCRIPT_NAME
     type: string
     default: "script.sh"
   - name: GIT_URL
     type: string
-    default: "https://github.com/ketank-new/repo1-tekton.git"
+    default: "https://github.com/ketank-new/repo2-tekton.git"
   resources:
     inputs:
     - name: source
       type: git
+      url: $(params.GIT_URL)
 
   steps:
     - name: run-script

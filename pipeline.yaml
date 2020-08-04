@@ -8,9 +8,17 @@ spec:
       name: source
       type: git
   tasks: 
-    name: invoke
+  - name: invoke1
     taskRef: 
     - name: invoke
+    resources: 
+      inputs: 
+      - name: source
+        resource: source
+  - name: invoke2
+    runAfter: invoke1
+    taskRef: 
+    - name: invoke2
     resources: 
       inputs: 
       - name: source

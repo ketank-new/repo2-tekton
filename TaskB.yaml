@@ -10,7 +10,7 @@ spec:
     default: "repo1-tekton"
   - name: SCRIPT_NAME
     type: string
-    default: "script.sh"
+    default: "build.sh"
   - name: GIT_URL
     type: string
     default: "https://github.com/ketank-new/repo1-tekton.git"

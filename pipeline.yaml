@@ -1,43 +1,16 @@
 apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: invoke
-spec:
-  params:
-  - name: REPO
-    type: string
-    description : path to build script
-    default: "repo2-tekton"
-  - name: SCRIPT_NAME
-    type: string
-    default: "script.sh"
-  - name: GIT_URL
-    type: string
-    default: "https://github.com/ketank-new/repo2-tekton.git"
-  resources:
-    inputs:
-    - name: source
-      type: git
-
-  steps:
-    - name: run-script
-      image: ubuntu
-      command: ['sh', '/workspace/source/$(params.SCRIPT_NAME)']
----
-
-apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata: 
   name: repo2
-resources: 
-  - name: source
-    type: git
 spec:
-tasks: 
-  - name: invoke
-    resources: 
-      inputs: 
-        - name: source
-          resource: source
-    taskRef: 
-      name: invoke
+  resources: 
+    - name: source
+      type: git
+  tasks: 
+    - name: invoke
+      resources: 
+        inputs: 
+          - name: source
+            resource: source
+  taskRef: 
+    name: invoke

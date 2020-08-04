@@ -7,13 +7,11 @@ spec:
     - 
       name: source
       type: git
-  taskRef: 
-    name: invoke
   tasks: 
-    - 
-      name: invoke
-      resources: 
-        inputs: 
-          - 
-            name: source
-            resource: source
+    name: invoke
+    taskRef: 
+    - name: invoke
+    resources: 
+      inputs: 
+      - name: source
+        resource: source

@@ -4,22 +4,21 @@ metadata:
   name: repo2
 spec: 
   resources: 
-    - 
-      name: source
+    - name: source
       type: git
   tasks: 
-  - name: invoke1
-    taskRef: 
-    - name: invoke
-    resources: 
-      inputs: 
-      - name: source
-        resource: source
-  - name: invoke2
-    runAfter: invoke1
-    taskRef: 
+    - name: invoke1
+      resources: 
+        inputs: 
+          - name: source
+            resource: source
+      taskRef: 
+        - name: invoke1
     - name: invoke2
-    resources: 
-      inputs: 
-      - name: source
-        resource: source
+      resources: 
+        inputs: 
+          - name: source
+            resource: source
+      runAfter: invoke1
+      taskRef: 
+        - name: invoke2

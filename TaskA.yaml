@@ -3,6 +3,7 @@ kind: Task
 metadata:
   name: cloneandrun-a
 spec:
+  serviceAccountName: build-bot
   params:
   - name: REPO
     type: string

@@ -24,8 +24,3 @@ spec:
     - name: clone-repo
       image: ubuntu
       command: ['git', 'clone' $(params.GIT_URL)]
-      env:
-      - name: GITHUB_TOKEN
-        valueFrom:
-          secretRef:
-            name: github-token

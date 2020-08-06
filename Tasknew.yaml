@@ -1,0 +1,26 @@
+
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: clone-opence
+spec:
+  params:
+  - name: PACKAGE_NAME
+    type: string
+    default: "torchtext-feedstock"
+  - name: BUILD_SCRIPT_NAME
+    type: string
+    default: "build.sh"
+  - name: GIT_URL
+    type: string
+    default: "https://github.ibm.com/ketank/tensorflow-feedstock.git"
+  - name: GIT_TOKEN
+    type: string
+  resources:
+    inputs:
+    - name: source
+      type: git
+  steps:
+    - name: clone-repo
+      image: ubuntu
+      command: ['git', 'clone' $(params.GIT_URL)]

@@ -13,9 +13,9 @@ spec:
       value: tensorflow-feedstock
   resources:
     - inputs:
-      - name: source
+      - name: opence
         resourceRef:
-          name: opence
+          name: source
   serviceAccountName: build-bot
   taskRef:
     name: clone-opence

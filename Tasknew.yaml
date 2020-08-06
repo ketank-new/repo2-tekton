@@ -28,5 +28,4 @@ spec:
       - name: GITHUB_TOKEN
         valueFrom:
           secretKeyRef:
-            name: $(params.GIT_TOKEN)
-            key: github-token
+            name: github-token

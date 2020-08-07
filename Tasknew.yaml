@@ -14,18 +14,11 @@ spec:
   - name: GIT_URL
     type: string
     default: "https://github.ibm.com/ketank/tensorflow-feedstock.git"
-  - name: GIT_TOKEN
   resources:
     inputs:
     - name: source
       type: git
   steps:
-    - name: clone-repo
-      image: ubuntu
-      command: ['git']
-      args:
-      -  'clone' 
-      -  "$(params.GIT_TOKEN):$(params.GIT_URL)"
-    - name: view-ewpo
+    - name: view-repo
       image: ubuntu
       command: ['ls', '/workspace/source/']

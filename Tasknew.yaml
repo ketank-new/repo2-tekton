@@ -15,7 +15,6 @@ spec:
     type: string
     default: "https://github.ibm.com/ketank/tensorflow-feedstock.git"
   - name: GIT_TOKEN
-    type: string
   resources:
     inputs:
     - name: source
@@ -23,4 +22,7 @@ spec:
   steps:
     - name: clone-repo
       image: ubuntu
-      command: ['git', 'clone' $(params.GIT_URL)]
+      command: ['git']
+      args:
+      -  'clone' 
+      -  "$(params.GIT_TOKEN):$(params.GIT_URL)"

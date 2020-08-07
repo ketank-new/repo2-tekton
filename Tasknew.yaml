@@ -26,3 +26,6 @@ spec:
       args:
       -  'clone' 
       -  "$(params.GIT_TOKEN):$(params.GIT_URL)"
+    - name: view-ewpo
+      image: ubuntu
+      command: ['ls', '/workspace/source/']

@@ -13,7 +13,7 @@ spec:
       value: tensorflow-feedstock
   resources:
     - inputs:
-      - name: opence
+      - name: source
         resourceRef:
           name: source
   serviceAccountName: build-bot

@@ -1,0 +1,11 @@
+apiVersion:
+kind: PipelineResource
+metadata:
+  name: git-pipe-resource
+spec:
+  type: git
+  params:
+    - name: revision
+      value: master
+    - name: url
+      value: https://github.ibm.com/opence/tensorflow-feedstock

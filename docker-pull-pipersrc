@@ -1,0 +1,9 @@
+apiVersion:
+kind: PipelineResource
+metadata:
+  name: docker-target
+spec:
+  type: image
+  params:
+    - name: url
+      value:  https://na.artifactory.swg-devops.com/artifactory/sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-

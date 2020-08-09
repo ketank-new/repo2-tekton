@@ -1,0 +1,20 @@
+
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: pull-image
+spec:
+  params:
+  - name: IMAGE_NAME
+    type: string
+  - name: SERVER_URL
+    type: string
+    default: "https://na.artifactory.swg-devops.com/artifactory/sys-powerai-r170-conda-local"
+    resources:
+    outputs:
+    - name: base-image
+      type: image
+  steps:
+    - name: pull-image
+      image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
+      command: ['conda', 'version']

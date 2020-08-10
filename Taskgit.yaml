@@ -4,6 +4,10 @@ kind: Task
 metadata:
   name: clone-opence
 spec:
+  inputs:
+    resources:
+    - name: git-pipe-resource
+      type: git
   params:
   - name: PACKAGE_NAME
     type: string
@@ -14,10 +18,6 @@ spec:
   - name: GIT_URL
     type: string
     default: "https://github.ibm.com/ketank/tensorflow-feedstock.git"
-  resources:
-    inputs:
-    - name: source
-      type: git
   steps:
     - name: view-repo
       image: ubuntu

@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: clone-repo
+spec:
+  params:
+  - name: PACKAGE_NAME
+    type: string
+  - name: URL
+    type: string
+    default: "https://github.com/ketank-new/repo1-tekton.git"
+    resources:
+  steps:
+    - name: clone-repo-step
+      image: ubuntu
+      command: ['git', 'clone', '$(params.URL)']

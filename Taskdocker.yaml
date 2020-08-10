@@ -9,7 +9,7 @@ spec:
     type: string
   - name: SERVER_URL
     type: string
-    default: "https://na.artifactory.swg-devops.com/artifactory/sys-powerai-r170-conda-local"
+    default: " https://na.artifactory.swg-devops.com/artifactory/sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/"
     resources:
     outputs:
     - name: docker-target

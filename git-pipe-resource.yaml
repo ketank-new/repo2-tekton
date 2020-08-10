@@ -1,4 +1,4 @@
-apiVersion:
+apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: git-pipe-resource

@@ -1,5 +1,5 @@
 
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: pull-image
@@ -16,5 +16,5 @@ spec:
       type: image
   steps:
     - name: pull-image
-      image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
-      command: ['conda', 'version']
+      image: pai-conda3:next-dev-rhel-x86_64
+      command: ['cat', '~/.docker/config.json']

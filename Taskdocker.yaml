@@ -12,7 +12,7 @@ spec:
     default: "https://na.artifactory.swg-devops.com/artifactory/sys-powerai-r170-conda-local"
     resources:
     outputs:
-    - name: base-image
+    - name: docker-target
       type: image
   steps:
     - name: pull-image

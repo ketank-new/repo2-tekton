@@ -6,7 +6,7 @@ metadata:
 spec:
   type: git
   params:
+    - name: url
+      value: https://github.ibm.com/ketank/tensorflow-feedstock.git
     - name: revision
       value: master
-    - name: url
-      value: https://github.ibm.com/opence/tensorflow-feedstock.git

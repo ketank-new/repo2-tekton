@@ -10,7 +10,7 @@ spec:
   params:
   - name: PACKAGE_NAME
     type: string
-    default: "torchtext-feedstock"
+    default: "tensorflow-feedstock"
   - name: BUILD_SCRIPT_NAME
     type: string
     default: "build.sh"
@@ -20,4 +20,4 @@ spec:
   steps:
     - name: view-repo
       image: ubuntu
-      command: ['ls', '/workspace/source/']
+      command: ['ls', '/workspace/']

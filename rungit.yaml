@@ -4,6 +4,11 @@ metadata:
   name: clone-repo-run
   namespace: tekton-pipelines
 spec:
+  inputs:
+    - resources:
+      - name: git-pipe-resource
+        resourceRef:
+          name: git-pipe-resource
   params:
     - name: BUILD_SCRIPT_NAME
       value: build.sh
@@ -11,11 +16,6 @@ spec:
       value: https://github.ibm.com/ketank/tensorflow-feedstock.git
     - name: PACKAGE_NAME
       value: tensorflow-feedstock
-  resources:
-    - inputs:
-      - name: source
-        resourceRef:
-          name: source
   serviceAccountName: build-bot
   taskRef:
     name: clone-opence

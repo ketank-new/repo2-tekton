@@ -6,4 +6,4 @@ spec:
   type: image
   params:
     - name: url
-      value:  https://na.artifactory.swg-devops.com/artifactory/sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/
+      value:  na.artifactory.swg-devops.com/artifactory/sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/

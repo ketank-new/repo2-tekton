@@ -1,11 +1,11 @@
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
   name: clone-repo-run
   namespace: tekton-pipelines
 spec:
   inputs:
-    - resources:
+    resources:
       - name: git-pipe-resource
         resourceRef:
           name: git-pipe-resource

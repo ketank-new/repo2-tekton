@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: clone-repo-run
+  namespace: tekton-pipelines
+spec:
+  inputs:
+    - resources:
+      - name: git-pipe-resource
+        resourceRef:
+          name: git-pipe-resource
+  params:
+    - name: GIT_URL
+      value: https://github.ibm.com/ketank/tensorflow-feedstock.git
+  serviceAccountName: build-bot
+  taskRef:
+    name: clone-opence

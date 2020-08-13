@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: docker-pull
+spec:
+  inputs:
+    resources:
+    - name: docker-pull-resource
+      type: image
+  params:
+  - name: SERVER
+    type: string
+    default: ""    
+  - name: IMAGE_NAME
+    type: string
+    default: ""
+  - name: TAG_NAME
+    type: string
+    default: ""
+  steps:
+    - name: pull-image
+      image: 
+      command: ['ls', '/workspace/']

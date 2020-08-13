@@ -6,8 +6,10 @@ spec:
   type: image
   params:
     - name: image_name
-      value: 
+      value: "pai-conda3"
     - name: tag_name
-      value: 
+      value: "next-dev-rhel-x86_64"
     - name: server_name
-      value: 
+      value: "https://na.artifactory.swg-devops.com/artifactory"
+    - name: channel_name
+      value: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"

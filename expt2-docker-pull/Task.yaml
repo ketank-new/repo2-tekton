@@ -10,14 +10,17 @@ spec:
   params:
   - name: SERVER
     type: string
-    default: ""    
+    default: "https://na.artifactory.swg-devops.com/artifactory"    
   - name: IMAGE_NAME
     type: string
-    default: ""
+    default: "pai-conda3"
+  - name: CHANNEL
+    type: string
+    default: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"
   - name: TAG_NAME
     type: string
-    default: ""
+    default: "next-dev-rhel-x86_64"
   steps:
     - name: pull-image
-      image: 
-      command: ['ls', '/workspace/']
+      image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
+      command: ['cat', '/etc/os-release']

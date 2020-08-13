@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: docker-pull-resource
+spec:
+  type: image
+  params:
+    - name: image_name
+      value: 
+    - name: tag_name
+      value: 
+    - name: server_name
+      value: 

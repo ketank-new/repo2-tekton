@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
-  name: pull-image-run
+  name: docker-pull-run
   namespace: tekton-pipelines
 spec:
   outputs:
@@ -11,9 +11,13 @@ spec:
           name: docker-pull-resource
   params:
     - name: IMAGE_NAME
-      value: 
+      value: "pai-conda3"
     - name: SERVER
-      value: 
+      value: "https://na.artifactory.swg-devops.com/artifactory"
+    - name: TAG_NAME
+      value: "next-dev-rhel-x86_64"
+    - name: CHANNEL
+      value: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"
   serviceAccountName: build-bot
   taskRef:
-    name: docker-pull-art
+    name: docker-pull

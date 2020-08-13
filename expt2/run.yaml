@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: clone-repo-run
+  namespace: tekton-pipelines
+spec:
+  inputs:
+    resources:
+      - name: package
+        resourceRef:
+          name: git-package
+        params:
+          - name: PACKAGE_NAME
+            value: sacremoses-feedstock
+          - name: GIT_URL
+            value: "https://github.ibm.com/open-ce/$(params.PACKAGE_NAME)"
+      - name: universe
+        resourceRef:
+          name: git-universe
+        params:
+          - name: PACKAGE_NAME
+            value: universe
+          - name: GIT_URL
+            value: "https://github.ibm.com/open-ce/$(params.PACKAGE_NAME)"
+  serviceAccountName: build-bot
+  taskRef:
+    name: clone-opence

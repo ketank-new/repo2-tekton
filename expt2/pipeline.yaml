@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata: 
+  name: repo2
+spec: 
+  resources: 
+    - name: source
+      type: git
+  tasks: 
+    - name: cloneandrun-a
+      taskRef: 
+        name: cloneandrun-a
+      resources: 
+        inputs: 
+          - name: source
+            resource: source

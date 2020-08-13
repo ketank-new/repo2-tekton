@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: clone-opence
+spec:
+  inputs:
+    resources:
+    - name: git-package
+      type: git
+      params:
+        - name: PACKAGE_NAME
+          type: string
+        - name: GIT_URL
+          type: string
+          default: "https://github.ibm.com/ketank/$(params.PACKAGE_NAME)"
+    - name: git-universe
+      type: git
+      params:
+        - name: PACKAGE_NAME
+          type: string
+        - name: GIT_URL
+          type: string
+          default: "https://github.ibm.com/ketank/$(params.PACKAGE_NAME)"
+  steps:
+    - name: view-repo
+      image: ubuntu
+      command: ['ls', '/workspace/']

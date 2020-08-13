@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: pull-image-run
+  namespace: tekton-pipelines
+spec:
+  outputs:
+    resources:
+      - name: docker-pull-resource
+        resourceRef:
+          name: docker-pull-resource
+  params:
+    - name: IMAGE_NAME
+      value: 
+    - name: SERVER
+      value: 
+  serviceAccountName: build-bot
+  taskRef:
+    name: docker-pull-art

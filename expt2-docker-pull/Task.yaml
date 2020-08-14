@@ -1,9 +1,13 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: docker-pull
+  name: pkg-build
 spec:
   inputs:
+    resources:
+    - name: git-pipe-resource
+      type: git
+  outputs:
     resources:
     - name: docker-pull-resource
       type: image
@@ -23,4 +27,6 @@ spec:
   steps:
     - name: pull-image
       image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
-      command: ['cat', '/etc/os-release']
+      scripts: |
+        cat /etc/os-release
+        ls /workspace/git-pipe-resource

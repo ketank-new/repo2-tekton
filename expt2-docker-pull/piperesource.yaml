@@ -6,5 +6,5 @@ spec:
   type: image
   params:
     - name: url
-      value: "https://na.artifactory.swg-devops.com/artifactory"
+      value: "https://na.artifactory.swg-devops.com/"
 

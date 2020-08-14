@@ -3,10 +3,6 @@ kind: Task
 metadata:
   name: pkg-build
 spec:
-  inputs:
-    resources:
-    - name: git-pipe-resource
-      type: git
   outputs:
     resources:
     - name: docker-pull-resource
@@ -29,4 +25,3 @@ spec:
       image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
       scripts: |
         cat /etc/os-release
-        ls /workspace/git-pipe-resource

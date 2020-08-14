@@ -5,11 +5,6 @@ metadata:
 spec:
   type: image
   params:
-    - name: image_name
-      value: "pai-conda3"
-    - name: tag_name
-      value: "next-dev-rhel-x86_64"
-    - name: server_name
+    - name: url
       value: "https://na.artifactory.swg-devops.com/artifactory"
-    - name: channel_name
-      value: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"
+

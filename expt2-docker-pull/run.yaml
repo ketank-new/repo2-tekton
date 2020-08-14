@@ -3,11 +3,6 @@ kind: TaskRun
 metadata:
   name: pkg-build-run
 spec:
-  inputs:
-    resources:
-      - name: git-pipe-resource
-        resourceRef:
-          name: git-pipe-resource
   outputs:
     resources:
       - name: docker-pull-resource

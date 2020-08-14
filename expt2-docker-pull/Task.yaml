@@ -24,4 +24,10 @@ spec:
     - name: pull-image
       image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
       scripts: |
-        cat /etc/os-release
+        apt-get update
+        apt-get install -y git wget
+        cd /workspace
+        git clone https://github.ibm.com/open-ce/numactl-feedstock.git
+        git clone https://github.ibm.com/open-ce/universe.git
+        cd numactl-feedstock
+        ../universe/builder/build_package.py

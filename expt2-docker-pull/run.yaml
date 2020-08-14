@@ -1,9 +1,13 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TaskRun
 metadata:
-  name: docker-pull-run
-  namespace: tekton-pipelines
+  name: pkg-build-run
 spec:
+  inputs:
+    resources:
+      - name: git-pipe-resource
+        resourceRef:
+          name: git-pipe-resource
   outputs:
     resources:
       - name: docker-pull-resource
@@ -20,4 +24,4 @@ spec:
       value: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"
   serviceAccountName: build-bot
   taskRef:
-    name: docker-pull
+    name: pkg-build

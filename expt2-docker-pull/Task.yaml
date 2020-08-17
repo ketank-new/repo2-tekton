@@ -23,9 +23,7 @@ spec:
   steps:
     - name: pull-image
       image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
-      scripts: |
-        apt-get update
-        apt-get install -y git wget
+      script: |
         cd /workspace
         git clone https://github.ibm.com/open-ce/numactl-feedstock.git
         git clone https://github.ibm.com/open-ce/universe.git

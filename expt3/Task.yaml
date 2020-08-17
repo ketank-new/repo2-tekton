@@ -36,7 +36,7 @@ spec:
               key: password
       script: |
         cd /workspace
-        git clone https://github.ibm.com/open-ce/numactl-feedstock.git
-        git clone https://github.ibm.com/open-ce/universe.git
+        git clone https://GIT_TOKEN@github.ibm.com/open-ce/numactl-feedstock.git
+        git clone https://GIT_TOKEN@github.ibm.com/open-ce/universe.git
         cd numactl-feedstock
         ../universe/builder/build_package.py

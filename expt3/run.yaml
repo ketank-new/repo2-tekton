@@ -1,0 +1,23 @@
+  
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: pkg-build-run
+spec:
+  outputs:
+    resources:
+      - name: docker-pull-resource
+        resourceRef:
+          name: docker-pull-resource
+  params:
+    - name: IMAGE_NAME
+      value: "pai-conda3"
+    - name: SERVER
+      value: "https://na.artifactory.swg-devops.com/artifactory"
+    - name: TAG_NAME
+      value: "next-dev-rhel-x86_64"
+    - name: CHANNEL
+      value: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"
+  serviceAccountName: build-bot
+  taskRef:
+    name: pkg-build

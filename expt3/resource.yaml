@@ -7,3 +7,5 @@ spec:
   params:
     - name: revision
       value: master
+    - name: url
+      value: https://github.ibm.com/open-ce/numactl-feedstock.git

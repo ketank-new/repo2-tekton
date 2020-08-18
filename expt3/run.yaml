@@ -10,8 +10,10 @@ spec:
         resourceRef:
           name: git-pipe-resource
   params:
-    - name: GIT_URL
-      value: https://github.ibm.com/open-ce/$(params.PKG_NAME)-feedstock.git
+    - name: PKG_NAME
+      value: numactl-feedstock
+    - name: PKG_URL
+      value: https://github.ibm.com/open-ce/$(params.PKG_NAME).git
   serviceAccountName: build-bot
   taskRef:
     name: clone-build

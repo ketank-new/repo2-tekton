@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: git-pipe-resource
+spec:
+  type: git
+  params:
+    - name: revision
+      value: master

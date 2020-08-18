@@ -25,7 +25,7 @@ spec:
     default: "sys-powerai-next-conda-local"
   - name: CHANNEL_FULLNAME
     type: string
-    default: ""
+    default: "https://ART_USR:ART_PSW@na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local"
   - name: GIT_TOKEN
     type: string
     default: ""

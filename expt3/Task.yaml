@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: clone-build
+spec:
+  inputs:
+    resources:
+    - name: git-pipe-resource
+      type: git
+  params:
+  - name: PKG_NAME
+    type: string
+    default: numactl-feedstock
+  steps:
+    - name: view-repo
+      image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
+      command: ['ls', '/workspace/']

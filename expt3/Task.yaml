@@ -7,6 +7,8 @@ spec:
     resources:
     - name: git-pipe-resource
       type: git
+    - name: git-universe-resource
+      type: git
   params:
   - name: PKG_NAME
     type: string
@@ -17,4 +19,12 @@ spec:
   steps:
     - name: view-repo
       image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
-      command: ['ls', '/workspace/']
+      script: |
+        sudo cp /tekton/creds/.gitconfig /home/builder/
+        sudo cp /tekton/creds/.git-credentials /home/builder/
+        sudo cat /home/builder/.git-credentials
+        sudo mv /workspace/git-pipe-resource /workspace/$(params.PKG_NAME)
+        sudo mv /workspace/git-universe-resource /workspace/numactl-feedstock/universe
+        cd /workspace/numactl-feedstock/
+        python /universe/builder/build_package.py --conda_build_config /universe/conda_build_config.yaml --output_folder=/home/builder/ --channels https://na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local
+        

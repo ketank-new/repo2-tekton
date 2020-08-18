@@ -11,6 +11,9 @@ spec:
   - name: PKG_NAME
     type: string
     default: numactl-feedstock
+  - name: PKG_URL
+    type: string
+    default: https://github.ibm.com/open-ce/$(params.PKG_NAME).git
   steps:
     - name: view-repo
       image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64

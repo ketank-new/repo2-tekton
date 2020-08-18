@@ -1,0 +1,43 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: pkg-build
+spec:
+  outputs:
+    resources:
+    - name: docker-pull-resource
+      type: image
+  params:
+  - name: SERVER
+    type: string
+    default: "https://na.artifactory.swg-devops.com/artifactory"    
+  - name: IMAGE_NAME
+    type: string
+    default: "pai-conda3"
+  - name: CHANNEL
+    type: string
+    default: "sys-powerai-condaimages-docker-local.artifactory.swg-devops.com"
+  - name: TAG_NAME
+    type: string
+    default: "next-dev-rhel-x86_64"
+  - name: CHANNEL_NAME
+    type: string
+    default: "sys-powerai-next-conda-local"
+  - name: CHANNEL_FULLNAME
+    type: string
+    default: ""
+  - name: GIT_TOKEN
+    type: string
+    default: ""
+  - name: OUTPUT_FOLDER
+    type: string
+    default: "/home/builder/output"
+  steps:
+    - name: pull-image
+      image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
+      script: |
+        cd /home/builder/
+        sudo git clone https://$(params.GIT_TOKEN)@github.ibm.com/open-ce/numactl-feedstock.git
+        cd numactl-feedstock
+        sudo git clone https://$(params.GIT_TOKEN)@github.ibm.com/open-ce/universe.git
+        python /universe/builder/build_package.py --conda_build_config /universe/conda_build_config.yaml --output_folder=${OUTPUT_FOLDER} --channels ${CHANNEL_FULLNAME}

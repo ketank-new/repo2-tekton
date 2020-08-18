@@ -9,6 +9,9 @@ spec:
       - name: git-pipe-resource
         resourceRef:
           name: git-pipe-resource
+      - name: git-universe-resource
+        resourceRef:
+          name: git-universe-resource
   params:
     - name: PKG_NAME
       value: numactl-feedstock

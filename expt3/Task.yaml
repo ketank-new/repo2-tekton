@@ -45,7 +45,7 @@ spec:
         sudo ln -s /tekton/creds/.git-credentials /home/builder/.git-credentials
         sudo mv /workspace/git-pipe-resource /home/builder/$(params.PKG_NAME)
         sudo mv /workspace/git-universe-resource /home/builder/$(params.PKG_NAME)/universe
+        export PATH=/opt/anaconda3/bin:$PATH
         cd /home/builder/
         sh $(params.PKG_NAME)/universe/ci_common_scripts/run_build.sh
-        ls -la /home/builder/
         

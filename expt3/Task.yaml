@@ -10,6 +10,12 @@ spec:
     - name: git-universe-resource
       type: git
   params:
+  - name: OUTPUT_FOLDER
+    type: string
+    default: /home/builder/
+  - name: CHANNEL_NAME
+    type: string
+    default: sys-powerai-next-conda-local
   - name: PKG_NAME
     type: string
     default: numactl-feedstock
@@ -19,12 +25,22 @@ spec:
   steps:
     - name: view-repo
       image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
+      env:
+        - name: ARTIFACTORY_CREDS_USR
+          value: ketank@us.ibm.com
+        - name: ARTIFACTORY_CREDS_PSW
+          valueFrom:
+            secretKeyRef:
+              name: art-token
+              key: .dockerconfigjson
+        - name: CHANNEL_FULLNAME
+          value: https://$(env.ARTIFACTORY_CREDS_USR):$(env.ARTIFACTORY_CREDS_PSW)@na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local
       script: |
-        sudo cp /tekton/creds/.gitconfig /home/builder/
-        sudo cp /tekton/creds/.git-credentials /home/builder/
-        sudo cat /home/builder/.git-credentials
+        sudo ln -s /tekton/creds/.gitconfig /home/builder/.gitconfig
+        sudo cp /tekton/creds/.git-credentials /home/builder/.git-credentials
         sudo mv /workspace/git-pipe-resource /workspace/$(params.PKG_NAME)
         sudo mv /workspace/git-universe-resource /workspace/numactl-feedstock/universe
         cd /workspace/numactl-feedstock/
-        python /universe/builder/build_package.py --conda_build_config /universe/conda_build_config.yaml --output_folder=/home/builder/ --channels https://na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local
+        sh universe/ci_common_scripts/run_build.sh
+        ls -la /home/builder/
         

@@ -12,7 +12,7 @@ spec:
   params:
   - name: OUTPUT_FOLDER
     type: string
-    default: /home/builder/
+    default: /home/builder/condabuild
   - name: CHANNEL_NAME
     type: string
     default: sys-powerai-next-conda-local
@@ -26,13 +26,18 @@ spec:
     - name: view-repo
       image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
       env:
+        - name: OUTPUT_FOLDER
+          value: $(params.OUTPUT_FOLDER)
+        - name: EXTERNAL_GIT_ROOT
+          value: /home/builder/$(params.PKG_NAME)
         - name: ARTIFACTORY_CREDS_USR
           value: ketank@us.ibm.com
         - name: ARTIFACTORY_CREDS_PSW
-          valueFrom:
-            secretKeyRef:
-              name: art-token
-              key: .dockerconfigjson
+          value: AKCp5fUDyGj24YdGPmywTfiV7BMLf6qinEiGC5PWAVbcG5rifnT4esW5kSU2e7FakhL2WhSBv
+          #valueFrom:
+          #  secretKeyRef:
+          #    name: art-token
+          #    key: .dockerconfigjson
         - name: CHANNEL_FULLNAME
           value: https://$(env.ARTIFACTORY_CREDS_USR):$(env.ARTIFACTORY_CREDS_PSW)@na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local
       script: |

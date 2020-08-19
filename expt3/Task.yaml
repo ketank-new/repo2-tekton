@@ -26,6 +26,16 @@ spec:
     - name: view-repo
       image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-x86_64
       env:
+        - name: GIT_USER
+          valueFrom:
+            secretKeyRef:
+              name: git-token
+              key: username
+        - name: GIT_PASSWD
+          valueFrom:
+            secretKeyRef:
+              name: git-token
+              key: password
         - name: OUTPUT_FOLDER
           value: $(params.OUTPUT_FOLDER)
         - name: EXTERNAL_GIT_ROOT
@@ -47,6 +57,7 @@ spec:
         sudo mv /workspace/git-pipe-resource /home/builder/$(params.PKG_NAME)
         sudo mv /workspace/git-universe-resource /home/builder/$(params.PKG_NAME)/universe
         echo $TOKEN
+        echo $GIT_USER
         export PATH=/opt/anaconda3/bin:$PATH
         cd /home/builder/
         sh $(params.PKG_NAME)/universe/ci_common_scripts/run_build.sh

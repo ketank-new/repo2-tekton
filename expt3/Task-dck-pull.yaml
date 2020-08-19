@@ -22,7 +22,7 @@ spec:
     default: "next-dev-rhel-x86_64"
   steps:
     - name: pull-image
-      image: $(params.CHANNEL)/$(params.IMAGE_NAME):$(params.TAG_NAME)
+      image: ubuntu
       env:
         - name: GIT_USERNAME
           valueFrom:
@@ -36,7 +36,6 @@ spec:
               key: password
       script: |
         cd /workspace
-        git clone https://GIT_TOKEN@github.ibm.com/open-ce/numactl-feedstock.git
-        git clone https://GIT_TOKEN@github.ibm.com/open-ce/universe.git
-        cd numactl-feedstock
-        ../universe/builder/build_package.py
+        git clone https://$(GIT_USERNAME):$(GIT_PASSWD)@github.ibm.com/open-ce/numactl-feedstock.git
+        git clone https://$(GIT_USERNAME):$(GIT_PASSWD)@github.ibm.com/open-ce/universe.git
+        ls

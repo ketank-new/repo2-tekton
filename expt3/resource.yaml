@@ -8,4 +8,4 @@ spec:
     - name: revision
       value: master
     - name: url
-      value: https://github.ibm.com/open-ce/numactl-feedstock.git
+      value: https://github.ibm.com/open-ce/bazel-feedstock.git

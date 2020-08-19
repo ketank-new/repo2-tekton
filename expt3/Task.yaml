@@ -37,10 +37,10 @@ spec:
           value: https://$(env.ARTIFACTORY_CREDS_USR):$(env.ARTIFACTORY_CREDS_PSW)@na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local
       script: |
         sudo ln -s /tekton/creds/.gitconfig /home/builder/.gitconfig
-        sudo cp /tekton/creds/.git-credentials /home/builder/.git-credentials
-        sudo mv /workspace/git-pipe-resource /workspace/$(params.PKG_NAME)
-        sudo mv /workspace/git-universe-resource /workspace/numactl-feedstock/universe
-        cd /workspace/numactl-feedstock/
-        sh universe/ci_common_scripts/run_build.sh
+        sudo ln -s /tekton/creds/.git-credentials /home/builder/.git-credentials
+        sudo mv /workspace/git-pipe-resource /home/builder/$(params.PKG_NAME)
+        sudo mv /workspace/git-universe-resource /home/builder/$(params.PKG_NAME)/universe
+        cd /home/builder/
+        sh $(params.PKG_NAME)/universe/ci_common_scripts/run_build.sh
         ls -la /home/builder/
         

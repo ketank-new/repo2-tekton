@@ -34,10 +34,11 @@ spec:
           value: ketank@us.ibm.com
         - name: ARTIFACTORY_CREDS_PSW
           value: AKCp5fUDyGj24YdGPmywTfiV7BMLf6qinEiGC5PWAVbcG5rifnT4esW5kSU2e7FakhL2WhSBv
-          #valueFrom:
-          #  secretKeyRef:
-          #    name: art-token
-          #    key: .dockerconfigjson
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: art-token
+              key: .dockerconfigjson
         - name: CHANNEL_FULLNAME
           value: https://$(env.ARTIFACTORY_CREDS_USR):$(env.ARTIFACTORY_CREDS_PSW)@na.artifactory.swg-devops.com/artifactory/api/conda/sys-powerai-next-conda-local
       script: |
@@ -45,6 +46,7 @@ spec:
         sudo ln -s /tekton/creds/.git-credentials /home/builder/.git-credentials
         sudo mv /workspace/git-pipe-resource /home/builder/$(params.PKG_NAME)
         sudo mv /workspace/git-universe-resource /home/builder/$(params.PKG_NAME)/universe
+        echo $TOKEN
         export PATH=/opt/anaconda3/bin:$PATH
         cd /home/builder/
         sh $(params.PKG_NAME)/universe/ci_common_scripts/run_build.sh

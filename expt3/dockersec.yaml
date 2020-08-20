@@ -1,0 +1,11 @@
+  
+apiVersion: v1
+kind: Secret
+metadata:
+  name: doc-token
+  annotations:
+    tekton.dev/docker-0: https://na.artifactory.swg-devops.com
+type: kubernetes.io/basic-auth
+data:
+  username: "a2V0YW5rQHVzLmlibS5jb20="
+  password: "QUtDcDVmVUR5R2oyNFlkR1BteXdUZmlWN0JNTGY2cWluRWlHQzVQV0FWYmNHNXJpZm5UNGVzVzVrU1UyZTdGYWtoTDJXaFNCdg=="

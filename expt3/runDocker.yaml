@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: docker-build-run
+spec:
+  inputs:
+    resources:
+      - name: git-universe-resource
+        resourceRef:
+          name: git-universe-resource
+  serviceAccountName: build-bot
+  taskRef:
+    name: docker-buil

@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: docker-build
+spec:
+  inputs:
+    resources:
+    - name: git-universe-resource
+      type: git
+  steps:
+    - name: build-docker-file
+      image: quay.io/buildah/stable:v1.15.1
+      securityContext:
+        privileged: true
+      ls
+      buildah version
+      command: ['buildah', 'bud', '--format=oci', '--tls-verify=true', '--layers', '-f', '/workspace/git-universe-resource/ci_common_scripts/base/Dockerfile', '-t', 'kk:try']

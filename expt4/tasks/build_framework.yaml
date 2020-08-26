@@ -1,0 +1,44 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-frameworks
+spec:
+  resources:
+    inputs:
+      - name: base-image 
+        type: image
+  params:
+    - name: framework
+      type: string
+      default: "spacy"
+    - name: universe
+      type: string
+      default: "git@github.ibm.com:open-ce/universe.git" 
+
+  steps:
+    - name: apply
+      image: $(inputs.resources.base-image.url)
+      env:
+       - name: SECURE_VALUE
+         valueFrom:
+           secretKeyRef:
+             name: git-access
+             key: ssh-privatekey
+#      image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-ppc64le
+      #workingDir: /workspace/source
+      command: ["/bin/bash", "-c"]
+      securityContext:
+        runAsUser: 1084
+      args:
+        - |-
+          echo BUILDING FRAMEWORK $(inputs.params.framework)
+          echo -----------------------------------
+          mkdir -p $HOME/.ssh/
+          echo -e "$SECURE_VALUE" > $HOME/.ssh/id_rsa
+          echo -e "Host github.ibm.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
+          chmod -R 700 $HOME/.ssh/
+          rm $HOME/.ssh/id_rsa.pub
+          cd $HOME
+          git clone $(inputs.params.universe)
+          source ${CONDA_INSTALL_DIR}/bin/activate
+          ./universe/builder/build_env.py --env_config_file $HOME/universe/envs/$(inputs.params.framework)-env.yaml

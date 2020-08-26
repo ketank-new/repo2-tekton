@@ -1,0 +1,52 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: framework-build-pipeline
+spec:
+  resources:
+  - name: base-image
+    type: image
+
+  tasks:
+  - name: build-xgboost
+    taskRef:
+      name: build-frameworks
+    resources:
+      inputs:
+        - name: base-image
+          resource: base-image
+    params:
+    - name: framework
+      value: "xgboost"
+
+#  - name: build-spacy
+#    taskRef:
+#      name: build-frameworks
+#    resources:
+#      inputs:
+#        - name: base-image
+#          resource: base-image
+#    params:
+#    - name: framework
+#      value: "spacy"
+
+#  - name: build-bazel
+#    taskRef:
+#      name: build-frameworks
+#    resources:
+#      inputs:
+#        - name: base-image
+#          resource: base-image
+#    params:
+#    - name: framework
+#      value: "bazel"
+#  - name: build-horovod
+#    taskRef:
+#      name: build-frameworks
+#    resources:
+#      inputs:
+#        - name: base-image
+#          resource: base-image
+#    params:
+#    - name: framework
+#      value: "horovod"

@@ -10,4 +10,5 @@ spec:
           name: git-universe-resource
   serviceAccountName: build-bot
   taskRef:
-    name: docker-buil
+    name: docker-build
+    kind: ClusterTask

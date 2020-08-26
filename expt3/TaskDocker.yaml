@@ -9,9 +9,7 @@ spec:
       type: git
   steps:
     - name: build-docker-file
-      image: quay.io/buildah/stable:v1.15.1
+      image: registry.redhat.io/rhel8/buildah:8.2
       securityContext:
         privileged: true
-      ls
-      buildah version
       command: ['buildah', 'bud', '--format=oci', '--tls-verify=true', '--layers', '-f', '/workspace/git-universe-resource/ci_common_scripts/base/Dockerfile', '-t', 'kk:try']

@@ -1,0 +1,52 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: build-numactl-feedstock
+spec:
+  inputs:
+    resources:
+    - name: base-image
+      type: image
+  params:
+  - name: UNIVERSE
+    type: string
+    default: "git@github.ibm.com:open-ce/universe.git"
+  - name: OUTPUT_FOLDER
+    type: string
+    default: /home/builder/condabuild
+  - name: CHANNEL_NAME
+    type: string
+    default: sys-powerai-next-conda-local
+  - name: PKG_NAME
+    type: string
+    default: numactl-feedstock
+  - name: PKG_URL
+    type: string
+    default: "git@github.ibm.com:open-ce/$(params.PKG_NAME).git"
+  steps:
+    - name: build
+      image: $(inputs.resources.base-image.url)
+      env:
+        - name: SECURE_VALUE
+          valueFrom:
+            secretKeyRef:
+              name: git-access
+              key: ssh-privatekey
+        - name: OUTPUT_FOLDER
+          value: $(params.OUTPUT_FOLDER)
+        - name: EXTERNAL_GIT_ROOT
+          value: /home/builder/$(params.PKG_NAME)
+      script: |
+        echo BUILDING FRAMEWORK $(inputs.params.framework)
+        echo -----------------------------------
+        mkdir -p $HOME/.ssh/
+        echo -e "$SECURE_VALUE" > $HOME/.ssh/id_rsa
+        echo -e "Host github.ibm.com\n\tStrictHostKeyChecking no\n" >> $HOME/.ssh/config
+        chmod -R 700 $HOME/.ssh/
+        rm $HOME/.ssh/id_rsa.pub
+        cd $HOME
+        git clone $(inputs.params.universe)
+        source ${CONDA_INSTALL_DIR}/bin/activate
+        export PATH=/opt/anaconda3/bin:$PATH
+        cd /home/builder/
+        sh $(params.PKG_NAME)/universe/ci_common_scripts/run_build.sh

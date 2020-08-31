@@ -1,1 +1,12 @@
-# Test
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: git-repo
+spec:
+  type: git
+  params:
+    - name: revision
+      value: master
+    - name: url
+      value: https://github.ibm.com/open-ce/bazel-feedstock.git
+

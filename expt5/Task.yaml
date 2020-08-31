@@ -1,1 +1,17 @@
-#Test
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: clone-opence
+spec:
+  inputs:
+    resources:
+    - name: git-pipe-resource
+      type: git
+  params:
+  - name: GIT_URL
+    type: string
+    default: "https://github.ibm.com/ketank/tensorflow-feedstock.git"
+  steps:
+    - name: view-repo
+      image: ubuntu
+      command: ['ls', '/workspace/']

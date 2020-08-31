@@ -1,17 +1,15 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: clone-opence
+  name: build-package
 spec:
   inputs:
     resources:
-    - name: git-pipe-resource
+    - name: git-repo
       type: git
-  params:
-  - name: GIT_URL
-    type: string
-    default: "https://github.ibm.com/ketank/tensorflow-feedstock.git"
   steps:
-    - name: view-repo
-      image: ubuntu
-      command: ['ls', '/workspace/']
+    - name: show-details
+      image: sys-powerai-condaimages-docker-local.artifactory.swg-devops.com/pai-conda3:next-dev-rhel-ppc64le
+      script: |
+        echo $GIT_URL
+        echo $GIT_REV

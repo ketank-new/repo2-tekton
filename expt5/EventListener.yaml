@@ -1,1 +1,15 @@
-# Test
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: listener-interceptor
+spec:
+  serviceAccountName: build-bot
+  triggers:
+    - name: foo-trig
+      interceptors:
+      - github:
+          eventTypes: ["pull_request"]
+      bindings:
+        - ref: pipeline-binding
+      template:
+        name: pipeline-template

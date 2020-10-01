@@ -43,7 +43,7 @@ spec:
         - name: ARTIFACTORY_CREDS_USR
           value: ketank@us.ibm.com
         - name: ARTIFACTORY_CREDS_PSW
-          value: AKCp5fUDyGj24YdGPmywTfiV7BMLf6qinEiGC5PWAVbcG5rifnT4esW5kSU2e7FakhL2WhSBv
+          value: 
         - name: ART_USR
           valueFrom:
             secretKeyRef:

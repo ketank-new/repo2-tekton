@@ -1,0 +1,60 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: review-pipeline-template
+spec:
+  params:
+  - name: gitrevision
+    description: The git revision
+    default: master
+  - name: gitrepositoryurl
+    description: The git repository url
+  - name: prurl
+    description: The url to the PR
+  - name: repo
+    description: The repo to the PR
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1alpha1
+    kind: PipelineResource
+    metadata:
+      name: git-source-$(uid)
+    spec:
+      type: git
+      params:
+      - name: revision
+        value: $(params.gitrevision)
+      - name: url
+        value: $(params.gitrepositoryurl)
+  - apiVersion: tekton.dev/v1alpha1
+    kind: PipelineResource
+    metadata:
+      name: pr-$(uid)
+    spec:
+      type: pullRequest
+      params:
+      - name: url
+        value: $(params.prurl)
+      secrets:
+      - secretName: githubtoken
+        secretKey: token
+        fieldName: authToken
+  - apiVersion: tekton.dev/v1alpha1
+    kind: TaskRun
+    metadata:
+      generateName: run-tests-
+    spec:
+      taskRef:
+        name: run-tests
+      inputs:
+        resources:
+        - name: repo
+          resourceRef:
+            name: git-master-$(uid)
+        - name: pr
+          resourceRef:
+            name: pr-$(uid)
+      outputs:
+        resources:
+        - name: pr
+          resourceRef:
+            name: pr-$(uid)

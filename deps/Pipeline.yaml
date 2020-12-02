@@ -7,8 +7,11 @@ spec:
   - name: hello
     taskRef:
       name: hello
+  - name: afternoon
+    runAfter: [hello]
+    taskRef: 
+      name: afternoon
   - name: goodbye
-    runAfter:
-     - hello
+    runAfter: [hello, afternoon]
     taskRef:
       name: goodbye

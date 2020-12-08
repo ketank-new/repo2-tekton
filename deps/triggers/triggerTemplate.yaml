@@ -4,10 +4,10 @@ metadata:
   name: thetemplatetrigger
 spec:
   resourcetemplates:
-  - apiVersion: triggers.tekton.dev/v1alpha1
+  - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
-      name: pipelinerun-$(uid)
+      generateName: pipelinerun-$(uid)
     spec:
       pipelineRef:
         name: hello-goodbye

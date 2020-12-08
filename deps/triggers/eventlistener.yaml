@@ -7,6 +7,6 @@ spec:
   triggers:
     - name: foo-trig
       template:
-        name: thetriggertemplate
+        name: thetemplatetrigger
       bindings:
         - ref: thetriggerbinding

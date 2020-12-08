@@ -6,11 +6,7 @@ spec:
   serviceAccountName: tekton-triggers-example-sa
   triggers:
     - name: foo-trig
-    interceptors:
-        - github:
-            eventTypes:
-              - pull_request
       template:
         name: thetriggertemplate
       bindings:
-        - name: thetriggerbinding
+        - ref: thetriggerbinding

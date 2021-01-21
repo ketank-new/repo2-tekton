@@ -7,7 +7,7 @@ spec:
   - name: REPO
     type: string
     description : path to build script
-    default: "repo2-tekton."
+    default: "repo2-tekton"
   - name: SCRIPT_NAME
     type: string
     default: "script.sh"

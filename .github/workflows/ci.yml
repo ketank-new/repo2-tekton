@@ -22,26 +22,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          curl -sL https://github.com/argoproj/argo-workflows/releases/download/v2.11.0/argo-linux-amd64.gz -o argo-linux.gz
-
-          # Unzip and make binary executable
-          gunzip argo-linux.gz
-          chmod +x argo-linux
-
-          # Move binary to path
-          mkdir -p $HOME/bin
-          mv ./argo-linux $HOME/bin/argo
-          PATH=$HOME/bin:$PATH
-
-          echo "Testing out argo"
-          pwd && ls && cd templates && ls && pwd && argo --help | grep lint
-          argo template lint template.yaml
-          #echo "Testing out argo"
-          #argo list
-
+      - name: Sync ArgoCD Application
+        uses: safe2008/argocd-app-actions@main
+        with:
+          address: "https://2886795298-30886-ollie07.environments.katacoda.com"
+          token: ${{ secrets.ARGOCD_TOKEN }}
+          insecure: true
+          appName: "demo"

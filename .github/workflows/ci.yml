@@ -41,7 +41,7 @@ jobs:
 
           echo "Testing out argo"
           pwd && ls && cd templates && ls && pwd
-          #argo template lint templates/template.yaml
+          argo template lint template.yaml
           #echo "Testing out argo"
           #argo list
 

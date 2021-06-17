@@ -27,6 +27,5 @@ jobs:
         uses: safe2008/argocd-app-actions@main
         with:
           address: "https://172.17.0.27:30886"
-          token: ${{ secrets.ARGOCD_TOKEN }}
           insecure: true
           appName: "demo"

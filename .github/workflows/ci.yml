@@ -40,7 +40,8 @@ jobs:
           PATH=$HOME/bin:$PATH
 
           echo "Testing out argo"
-          argo --help
+          pwd
+          argo template lint templates/template.yaml
           #echo "Testing out argo"
           #argo list
 

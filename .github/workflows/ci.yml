@@ -40,7 +40,7 @@ jobs:
           PATH=$HOME/bin:$PATH
 
           echo "Testing out argo"
-          argo list
+          argo --help
           #echo "Testing out argo"
           #argo list
 

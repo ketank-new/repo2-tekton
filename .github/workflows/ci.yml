@@ -19,5 +19,20 @@ jobs:
     - name: Check pods
       run: |
         kubectl get pods
+        curl -sL https://github.com/argoproj/argo-workflows/releases/download/v2.4.3/argo-linux-amd64.gz -o argo-linux.gz
+
+        # Unzip and make binary executable
+        gunzip argo-linux.gz
+        chmod +x argo-linux
+
+        # Move binary to path
+        mkdir -p $HOME/bin
+        mv ./argo-linux $HOME/bin/argo
+        PATH=$HOME/bin:$PATH
+
+        echo "Testing out argo"
+        pwd && ls && argo --help | grep lint
+        argo template lint templates
+
     
     

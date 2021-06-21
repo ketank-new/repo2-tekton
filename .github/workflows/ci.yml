@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -16,7 +16,7 @@ jobs:
       uses: CodingNagger/minikube-setup-action@v1.0.2
     - name: Launch Minikube
       run: eval ${{ steps.minikube.outputs.launcher }}
-    - name: Check pods
+    - name: Lint checks on templates
       run: |
         kubectl get pods
         curl -sL https://github.com/argoproj/argo-workflows/releases/download/v2.11.0/argo-linux-amd64.gz -o argo-linux.gz

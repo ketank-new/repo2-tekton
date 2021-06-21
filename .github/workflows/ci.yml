@@ -19,7 +19,7 @@ jobs:
     - name: Check pods
       run: |
         kubectl get pods
-        curl -sL https://github.com/argoproj/argo-workflows/releases/download/v2.4.3/argo-linux-amd64.gz -o argo-linux.gz
+        curl -sLO https://github.com/argoproj/argo/releases/download/v0.0.0-dev-dataflow-24/argo-linux-amd64.gz -o argo-linux.gz
 
         # Unzip and make binary executable
         gunzip argo-linux.gz

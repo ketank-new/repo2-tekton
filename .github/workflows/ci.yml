@@ -1,0 +1,38 @@
+name: CI
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch..
+  push:
+    branches: [ lint-check ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Minikube
+      id: minikube
+      uses: CodingNagger/minikube-setup-action@v1.0.2
+    - name: Launch Minikube
+      run: eval ${{ steps.minikube.outputs.launcher }}
+    - name: Lint checks on templates
+      run: |
+        kubectl get pods
+        curl -sL https://github.com/argoproj/argo-workflows/releases/download/v2.11.0/argo-linux-amd64.gz -o argo-linux.gz
+
+        # Unzip and make binary executable
+        gunzip argo-linux.gz
+        chmod +x argo-linux
+
+        # Move binary to path
+        mkdir -p $HOME/bin
+        mv ./argo-linux $HOME/bin/argo
+        PATH=$HOME/bin:$PATH
+
+        echo "Testing out argo"
+        pwd && ls && argo --help | grep lint
+        argo template lint templates
+
+    
+    

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: build-publish-slack-notifications
+spec:
+  templates:  
+  #
+  # Send Slack Notifications based on main workflow status.
+  #
+  - name: notify-slack
+    script:
+      image: registry.redhat.io/rhel8/buildah:latest
+      securityContext:
+        privileged: true
+      command: [bash]
+      source: |
+        echo "Sending Notifications"
+        
